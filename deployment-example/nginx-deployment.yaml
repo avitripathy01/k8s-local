@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: multicontainers-local-deployment
+ labels:
+  env: local
+spec:
+ replicas: 3
+ selector:
+  matchLabels:
+   app: local-deploy
+ template:
+  metadata: 
+   labels:
+    app: local-deploy
+  spec:
+   containers:
+   -  name: nginx-local-deploy
+      image: nginx
+      ports:
+      -  containerPort: 80

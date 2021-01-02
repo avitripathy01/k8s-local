@@ -1,0 +1,15 @@
+apiVersion : v1
+kind: Pod
+metadata: 
+ name: cfgmap-pod
+spec: 
+  containers:
+  - name: cfg-pod1
+    image: busybox
+    command: ["sh", "-c", "echo $(MY_VAR) && sleep 600"]
+    env:
+    - name: MY_VAR
+      valueFrom:
+        configMapKeyRef:
+          name: local-cfg-map
+          key: key1

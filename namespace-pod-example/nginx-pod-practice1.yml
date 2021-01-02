@@ -1,0 +1,16 @@
+apiVersion : v1
+kind: Pod
+metadata: 
+ name: my-local-nginx-1
+ namespace: local-ns
+ labels:
+  app: local
+spec: 
+  containers:
+  - name: local-nginx
+    image: nginx
+    command: ["nginx"]
+    args: ["-g", "daemon off;", "-q"]
+    ports:
+    -  containerPort: 80
+

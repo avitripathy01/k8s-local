@@ -1,0 +1,17 @@
+apiVersion : v1
+kind: Pod
+metadata: 
+ name: cfgmap-vol-pod
+spec: 
+  containers:
+  - name: cfg-vol-pod
+    image: busybox
+    command: ["sh", "-c", "echo $(cat /etc/config/key1) && sleep 600"]
+    volumeMounts: 
+    - name: config-volume
+      mountPath: /etc/config     
+  volumes:
+  - name: config-volume
+    configMap:
+     name: local-cfg-map
+    
